@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     de.hdodenhof.circleimageview.CircleImageView  profileImage;
     TextView profileName, email;
+    com.google.android.material.button.MaterialButton logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.button)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         profileImage = (de.hdodenhof.circleimageview.CircleImageView)navView.findViewById(R.id.profileImage);
         profileName = navView.findViewById(R.id.profileName);
         email = navView.findViewById(R.id.email);
-
+        logout = findViewById(R.id.log_out);
         SharedPreferences sharedPreferences = getSharedPreferences("ShPref", Context.MODE_PRIVATE);
             String imageUrl = sharedPreferences.getString("imageUrl", "");
             Picasso.get().load(imageUrl).into(profileImage);
@@ -71,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
         String profEmail = sharedPreferences.getString("email", "");
         email.setText(profEmail);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               LoginManager.getInstance().logOut();
+                Toast.makeText(getApplicationContext(),"Logged out successfully!",Toast.LENGTH_LONG).show();
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+               startActivity(i);
+               finish();
+            }
+        });
 
     }
 

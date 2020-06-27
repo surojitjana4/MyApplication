@@ -69,8 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_SHORT).show();
-
                         String imageUrl = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?type=large";
                         SharedPreferences pref = getApplicationContext().getSharedPreferences(ShPref, 0); // 0 - for private mode
                         SharedPreferences.Editor editor = pref.edit();

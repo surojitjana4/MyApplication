@@ -19,5 +19,27 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" >
+
+        <LinearLayout android:layout_gravity="bottom"
+            android:background="#20191d1e"
+            android:layout_width="match_parent"
+            android:paddingBottom="2dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/log_out"
+                android:layout_height="70dp"
+                android:text="@string/sign_out"
+                android:layout_width="match_parent"
+                app:icon="@drawable/ic_exit_to_app"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
 </androidx.drawerlayout.widget.DrawerLayout>
