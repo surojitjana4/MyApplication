@@ -3,6 +3,8 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         View navView =  navigationView.inflateHeaderView(R.layout.nav_header_main);
-        profileImage = (de.hdodenhof.circleimageview.CircleImageView)navView.findViewById(R.id.profileImage);
+        profileImage =navView.findViewById(R.id.profileImage);
         profileName = navView.findViewById(R.id.profileName);
         email = navView.findViewById(R.id.email);
         logout = findViewById(R.id.log_out);
